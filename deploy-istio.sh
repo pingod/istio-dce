@@ -75,3 +75,8 @@ echo -e "\033[32m===============开始更新Service===============\033[0m"
 for i in $serviceList; do
 kubectl -n istio-system patch service $i --patch "$(cat /tmp/patch-svc.yaml)"
 done
+
+
+echo -e "\033[32m===============添加一个kiali secret===============\033[0m"
+
+kubectl create secret generic kiali -n istio-system --from-literal=username=admin --from-literal=passphrase=admin
